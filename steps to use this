@@ -1,9 +1,0 @@
-ollama pull llama3
-then make environment
-activate it 
-install requirements.txt
-
-place your pdf file in data_large folder
-
-Whenever documents change, you chave to run the 1st file for building the db, then for asking queries, you need to run the 2rd script 
-

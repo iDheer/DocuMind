@@ -1,15 +1,23 @@
-# Advanced RAG System with Hierarchical Document Processing
+# 🧠 DocuMind — Smart Document Q&A with Hierarchical RAG
 
-A sophisticated Retrieval-Augmented Generation (RAG) system built with LlamaIndex, ChromaDB, and Ollama that provides intelligent document querying with advanced features like hierarchical chunking, auto-merging retrieval, and re-ranking.
+> **"Ask your documents anything."** — A powerful, GPU-accelerated RAG system that understands context like never before.
 
-## 🚀 Features
+DocuMind is an advanced Retrieval-Augmented Generation (RAG) system that goes beyond simple keyword matching. Using **hierarchical document chunking**, **auto-merging retrieval**, and **neural re-ranking**, it delivers precise, context-aware answers from your PDF documents.
 
-- **Hierarchical Document Processing**: Implements advanced chunking strategies for better context preservation
-- **Auto-Merging Retrieval**: Intelligently merges related document chunks for comprehensive answers
-- **Advanced Re-ranking**: Uses state-of-the-art reranking models to improve relevance
-- **Real-time Streaming**: Displays model thinking process and answers in real-time
-- **GPU Acceleration**: Leverages CUDA for fast embeddings and reranking
-- **Persistent Storage**: Uses ChromaDB for efficient vector storage and retrieval
+[![Python 3.8+](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Powered by LlamaIndex](https://img.shields.io/badge/Powered%20by-LlamaIndex-orange.svg)](https://github.com/run-llama/llama_index)
+
+## ✨ Features
+
+| Feature | Description |
+|---------|-------------|
+| 🏛️ **Hierarchical Chunking** | Multi-level document parsing (2048 → 512 → 128 tokens) preserves context hierarchy |
+| 🔄 **Auto-Merging Retrieval** | Intelligently combines related chunks for comprehensive answers |
+| 🎯 **Neural Re-ranking** | BGE-Reranker-v2-M3 ensures only the most relevant passages reach the LLM |
+| ⚡ **Real-time Streaming** | Watch the AI think and respond in real-time with Qwen3's reasoning tags |
+| 🚀 **GPU Acceleration** | CUDA-optimized embeddings and reranking for blazing-fast performance |
+| 💾 **Persistent Storage** | ChromaDB vector store preserves your processed documents |
 
 ## 🏗️ Architecture
 
@@ -36,8 +44,8 @@ A sophisticated Retrieval-Augmented Generation (RAG) system built with LlamaInde
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repo-url>
-   cd SME
+   git clone https://github.com/iDheer/DocuMind.git
+   cd DocuMind
    ```
 
 2. **Create and activate virtual environment**
@@ -64,22 +72,16 @@ A sophisticated Retrieval-Augmented Generation (RAG) system built with LlamaInde
 ## 📁 Project Structure
 
 ```
-SME/
-├── 1_build_database_advanced.py    # Database creation and document processing
-├── 2_query_system_advanced.py      # Interactive query interface
-├── 3_inspect_hierarchy.py          # Utility to inspect document hierarchy
-├── requirements.txt                # Python dependencies
-├── README.md                       # This file
-├── data_large/                     # Directory for input documents
-│   └── *.pdf                       # PDF documents to process
-├── chroma_db_advanced/             # ChromaDB storage (auto-generated)
-│   ├── chroma.sqlite3
-│   ├── docstore.json
-│   ├── graph_store.json
-│   ├── image__vector_store.json
-│   ├── index_store.json
-│   └── [collection-id]/
-└── environment/                    # Virtual environment (not in git)
+DocuMind/
+├── 1_build_database_advanced.py    # 📥 Database builder & document processor
+├── 2_query_system_advanced.py      # 💬 Interactive query interface
+├── 3_inspect_hierarchy.py          # 🔍 Document hierarchy visualizer
+├── requirements.txt                # 📦 Python dependencies
+├── README.md                       # 📖 You are here!
+├── LICENSE                         # 📜 MIT License
+├── data_large/                     # 📂 Your PDF documents (create this)
+│   └── *.pdf                       
+└── chroma_db_advanced/             # 🗃️ Vector database (auto-generated)
 ```
 
 ## 🚀 Quick Start
@@ -138,13 +140,12 @@ Question: What are the main concepts of operating systems?
 
 ### Key Parameters
 ```python
-# In 1_build_database_advanced.py
-CHUNK_SIZE = 512           # Base chunk size
-CHUNK_OVERLAP = 128        # Overlap between chunks
+# In 1_build_database_advanced.py - HierarchicalNodeParser
+chunk_sizes = [2048, 512, 128]  # Multi-level chunking hierarchy
 
-# In 2_query_system_advanced.py
-SIMILARITY_TOP_K = 12      # Initial retrieval count
-RERANK_TOP_N = 4          # Final reranked results
+# In 2_query_system_advanced.py - Retriever & Reranker
+similarity_top_k = 12          # Initial retrieval count
+top_n = 4                      # Final reranked results
 ```
 
 ## 🔧 Customization
@@ -175,10 +176,10 @@ Settings.embed_model = HuggingFaceEmbedding(
 
 1. **CUDA Out of Memory**
    ```bash
-   # Check CUDA availability
-   python test_cuda.py
+   # Check if CUDA is available in Python
+   python -c "import torch; print(torch.cuda.is_available())"
    
-   # Reduce batch sizes or switch to CPU
+   # Switch to CPU if needed - edit the scripts:
    device="cpu"  # in model configurations
    ```
 
@@ -203,18 +204,6 @@ Settings.embed_model = HuggingFaceEmbedding(
 - **GPU Memory**: Reduce `similarity_top_k` if running out of memory
 - **Speed**: Use smaller embedding models for faster processing
 - **Quality**: Increase `chunk_overlap` for better context preservation
-
-## 📊 Testing
-
-Run the included test utilities:
-
-```bash
-# Test CUDA setup
-python test_cuda.py
-
-# Test context window handling
-python test_context_window.py
-```
 
 ## 🤝 Contributing
 
@@ -244,4 +233,10 @@ If you encounter any issues or have questions:
 
 ---
 
-**Note**: This project requires significant computational resources. For best performance, use a machine with a CUDA-compatible GPU and sufficient RAM.
+<div align="center">
+
+**DocuMind** — Built with ❤️ using LlamaIndex, ChromaDB, and Ollama
+
+*Transform your documents into conversational knowledge.*
+
+</div>

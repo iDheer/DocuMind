@@ -17,7 +17,7 @@ DATA_PATH = "./data_large"
 
 # --- 1. CONFIGURE MODELS ---
 print("--- Configuring models ---")
-Settings.llm = Ollama(model="qwen3:8b", request_timeout=300.0)
+Settings.llm = Ollama(model="qwen3:4b", request_timeout=300.0)
 Settings.embed_model = HuggingFaceEmbedding(
     model_name="sentence-transformers/all-mpnet-base-v2",
     device="cuda"
