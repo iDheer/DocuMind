@@ -1,7 +1,7 @@
 import chromadb
 from llama_index.core import Settings, StorageContext, load_index_from_storage
 from llama_index.vector_stores.chroma import ChromaVectorStore
-from llama_index.llms.ollama import Ollama
+from llama_index.llms.openai_like import OpenAILike
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.core.postprocessor import SentenceTransformerRerank
 from llama_index.core.retrievers import AutoMergingRetriever
@@ -12,7 +12,13 @@ DB_PATH = "./chroma_db_advanced"
 
 # --- 1. CONFIGURE MODELS ---
 print("--- Configuring models ---")
-Settings.llm = Ollama(model="qwen3:4b", request_timeout=300.0)
+Settings.llm = OpenAILike(
+    model="qwen3-4b-thinking-2507",
+    api_base="http://localhost:1234/v1",
+    api_key="lm-studio",
+    timeout=300.0,
+    is_chat_model=True
+)
 Settings.embed_model = HuggingFaceEmbedding(
     model_name="sentence-transformers/all-mpnet-base-v2",
     device="cuda"

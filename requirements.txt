@@ -2,8 +2,11 @@
 llama-index
 langchain
 
-# Integration for the LLM (Llama 3 via Ollama)
-llama-index-llms-ollama
+# Integration for LM Studio (OpenAI-compatible API)
+llama-index-llms-openai-like
+
+# Integration for Gemini (for fact verification)
+llama-index-llms-gemini
 
 # Integration for the Embedding Model (MiniLM via HuggingFace)
 llama-index-embeddings-huggingface
@@ -23,4 +26,10 @@ llama-index-vector-stores-chroma
 pypdf
 
 # For reranking
-llama-index-postprocessor-sentence-transformer-rerank
+llama-index-postprocessor-sbert-rerank
+
+# For Arxiv research paper integration
+arxiv
+
+# Environment and utilities
+python-dotenv

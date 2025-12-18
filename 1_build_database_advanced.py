@@ -8,7 +8,7 @@ from llama_index.core import (
 )
 from llama_index.vector_stores.chroma import ChromaVectorStore
 from llama_index.core.node_parser import HierarchicalNodeParser, get_leaf_nodes
-from llama_index.llms.ollama import Ollama
+from llama_index.llms.openai_like import OpenAILike
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 
 # --- 0. Define Constants ---
@@ -17,7 +17,13 @@ DATA_PATH = "./data_large"
 
 # --- 1. CONFIGURE MODELS ---
 print("--- Configuring models ---")
-Settings.llm = Ollama(model="qwen3:4b", request_timeout=300.0)
+Settings.llm = OpenAILike(
+    model="qwen3-4b-thinking-2507",
+    api_base="http://localhost:1234/v1",
+    api_key="lm-studio",
+    timeout=300.0,
+    is_chat_model=True
+)
 Settings.embed_model = HuggingFaceEmbedding(
     model_name="sentence-transformers/all-mpnet-base-v2",
     device="cuda"

@@ -64,6 +64,12 @@ chroma_db_advanced/
 *.db
 *.sqlite3
 
+# Chat history and session data
+chat_history/
+
+# Arxiv paper cache
+arxiv_cache/
+
 # Large data files (optional - remove if you want to include sample docs)
 data_large/
 *.pdf
