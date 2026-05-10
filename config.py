@@ -37,7 +37,7 @@ COLLECTION_NAME = "advanced_docs_v1"
 # ============================================================================
 # Local LLM (LM Studio - OpenAI compatible API)
 LM_STUDIO_BASE_URL = "http://localhost:1234/v1"
-LM_STUDIO_MODEL = "qwen3-4b-thinking-2507"  # Qwen 3 4B with thinking/reasoning
+LM_STUDIO_MODEL = "qwen/qwen3-4b-thinking-2507"  # Qwen 3 4B with thinking/reasoning
 LM_STUDIO_TIMEOUT = 300.0
 
 # Embedding Model

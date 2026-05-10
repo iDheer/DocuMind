@@ -20,16 +20,16 @@ _cache_manager = None
 
 
 def get_gemini_llm():
-    """Lazy initialization of Gemini LLM."""
+    """Lazy initialization of Gemini model via google-generativeai."""
     global _gemini_llm
     if _gemini_llm is None:
         if not config.GEMINI_API_KEY:
             raise ValueError(
                 "GEMINI_API_KEY not set. Please set it in your .env file or config.py"
             )
-        os.environ["GOOGLE_API_KEY"] = config.GEMINI_API_KEY
-        from llama_index.llms.gemini import Gemini
-        _gemini_llm = Gemini(model=config.GEMINI_MODEL)
+        import google.generativeai as genai
+        genai.configure(api_key=config.GEMINI_API_KEY)
+        _gemini_llm = genai.GenerativeModel(model_name=config.GEMINI_MODEL)
     return _gemini_llm
 
 
@@ -123,8 +123,8 @@ class GeminiFactVerifier:
         results = []
         
         try:
-            response = llm.complete(prompt)
-            analysis = str(response).strip()
+            response = llm.generate_content(prompt)
+            analysis = response.text.strip()
             
             # Cache the Gemini response
             cache_manager.gemini_cache.cache_verification(prompt_hash, analysis)

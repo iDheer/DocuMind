@@ -10,23 +10,24 @@ from llama_index.vector_stores.chroma import ChromaVectorStore
 from llama_index.core.node_parser import HierarchicalNodeParser, get_leaf_nodes
 from llama_index.llms.openai_like import OpenAILike
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+import config
 
 # --- 0. Define Constants ---
-DB_PATH = "./chroma_db_advanced"
-DATA_PATH = "./data_large"
+DB_PATH = config.DB_PATH
+DATA_PATH = config.DATA_PATH
 
 # --- 1. CONFIGURE MODELS ---
 print("--- Configuring models ---")
 Settings.llm = OpenAILike(
-    model="qwen3-4b-thinking-2507",
-    api_base="http://localhost:1234/v1",
+    model=config.LM_STUDIO_MODEL,
+    api_base=config.LM_STUDIO_BASE_URL,
     api_key="lm-studio",
-    timeout=300.0,
+    timeout=config.LM_STUDIO_TIMEOUT,
     is_chat_model=True
 )
 Settings.embed_model = HuggingFaceEmbedding(
-    model_name="sentence-transformers/all-mpnet-base-v2",
-    device="cuda"
+    model_name=config.EMBEDDING_MODEL,
+    device=config.EMBEDDING_DEVICE
 )
 
 # --- 2. INITIALIZE STORAGE ---

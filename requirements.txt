@@ -6,17 +6,14 @@ langchain
 llama-index-llms-openai-like
 
 # Integration for Gemini (for fact verification)
-llama-index-llms-gemini
+google-generativeai
 
 # Integration for the Embedding Model (MiniLM via HuggingFace)
 llama-index-embeddings-huggingface
 sentence-transformers
 
-# For Code Parsing
+# For File Reading (PDF, text, etc.)
 llama-index-readers-file
-tree-sitter
-tree-sitter-languages
-tree_sitter_language_pack
 
 # For Vector Database (ChromaDB)
 chromadb
